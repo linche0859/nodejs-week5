@@ -29,9 +29,7 @@ const doc = {
     },
     Error: {
       message: {
-        field: {
-          message: '錯誤訊息',
-        },
+        field: '錯誤訊息',
       },
     },
   },

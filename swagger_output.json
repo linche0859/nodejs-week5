@@ -25,24 +25,129 @@
   "paths": {
     "/posts/": {
       "get": {
-        "tags": [],
+        "tags": [
+          "Posts"
+        ],
+        "summary": "取得貼文",
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "關鍵字",
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "排序方式，desc 為新至舊，asc 為舊至新",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功取得貼文",
+            "schema": {
+              "$ref": "#/definitions/Posts"
+            }
+          }
+        }
       },
       "post": {
-        "tags": [],
+        "tags": [
+          "Posts"
+        ],
+        "summary": "新增貼文",
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "parameter_name",
+            "in": "body",
+            "description": "貼文資料",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "example": "貼文內容"
+                },
+                "image": {
+                  "type": "string",
+                  "example": "貼文圖片連結"
+                }
+              },
+              "required": [
+                "content"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "新增貼文成功",
+            "schema": {
+              "$ref": "#/definitions/Posts"
+            }
+          },
+          "400": {
+            "description": "新增貼文失敗",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
       }
     },
     "/users/register": {
       "post": {
-        "tags": [],
+        "tags": [
+          "Users"
+        ],
+        "summary": "註冊會員",
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "parameter_name",
+            "in": "body",
+            "description": "會員資料",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "暱稱"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "test@gmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "123456"
+                }
+              },
+              "required": [
+                "name",
+                "email",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "註冊會員成功",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          },
+          "400": {
+            "description": "註冊會員失敗",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
       }
     }
   },
@@ -113,13 +218,8 @@
           "type": "object",
           "properties": {
             "field": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "錯誤訊息"
-                }
-              }
+              "type": "string",
+              "example": "錯誤訊息"
             }
           }
         }
