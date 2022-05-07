@@ -3,6 +3,7 @@
   "info": {
     "title": "METAWALL",
     "description": "METAWALL 的 API 文件",
+    "host": "https://nodejs-week5.herokuapp.com",
     "version": "1.0.0"
   },
   "host": "localhost:3000",

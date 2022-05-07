@@ -1,9 +1,11 @@
 const swaggerAutogen = require('swagger-autogen')();
+require('dotenv').config();
 
 const doc = {
   info: {
     title: 'METAWALL',
     description: 'METAWALL 的 API 文件',
+    host: process.env.SWAGGER_BASE || 'localhost:3000',
   },
   tags: [
     { name: 'Posts', description: '貼文相關' },
