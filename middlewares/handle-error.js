@@ -1,9 +1,9 @@
 /**
- * 取得套件的錯誤
+ * 取得欄位驗證的錯誤
  * @param {object} err Error instance
  * @returns {object}
  */
-const getModuleError = (err) => {
+const getValidationError = (err) => {
   return Object.entries(err.errors).reduce((acc, cur) => {
     const [field, value] = cur;
     acc[field] = value.message;
@@ -20,7 +20,7 @@ const handleDevError = (err, res) => {
   const { statusCode, message, stack, isValidationError, toObject } = err;
   res.status(statusCode).json({
     message: isValidationError
-      ? getModuleError(toObject ? JSON.parse(err.message) : err)
+      ? getValidationError(toObject ? JSON.parse(err.message) : err)
       : message,
     error: err,
     stack,
@@ -38,7 +38,7 @@ const handleProdError = (err, res) => {
   if (isOperational) {
     return res.status(statusCode).json({
       message: isValidationError
-        ? getModuleError(toObject ? JSON.parse(err.message) : err)
+        ? getValidationError(toObject ? JSON.parse(err.message) : err)
         : message,
     });
   }
